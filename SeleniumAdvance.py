@@ -11,16 +11,12 @@ from PIL import Image
 # Defining a function to show error
 def NotFoundError():
     print("You have entered incorrect city....Try again..")
-
-
 def Error(str):
     print("Error " + str + " value not found.. ")
-
-
 # fn to get image of data graph...
 def BuildGraph():
-    ss = driver.find_element_by_xpath("""//*[@id="chart_small"]""").screenshot_as_png
-    imageStream = io.BytesIO(ss)
+    Screenshot = driver.find_element_by_xpath("""//*[@id="chart_small"]""").screenshot_as_png
+    imageStream = io.BytesIO(Screenshot)
     im = Image.open(imageStream)
     im.show()
 
@@ -32,7 +28,7 @@ chrome_options.add_argument("--window-size=1920x1080")
 
 # current directory
 PATH = "C:\Program Files (x86)\chromedriver.exe"
-driver = webdriver.Chrome( executable_path=PATH)
+driver = webdriver.Chrome(options=chrome_options,executable_path=PATH)
 URL = "https://openweathermap.org/find"
 driver.get(URL)
 driver.minimize_window()
@@ -42,7 +38,7 @@ inputCity = driver.find_element_by_xpath("""//*[@id="search_str"]""")
 inputCity.send_keys(city)
 inputCity.submit()
 # Sleeping so that website can load..
-time.sleep(3)
+time.sleep(5)
 try:
     alert = driver.find_element_by_xpath("""//*[@id="forecast_list_ul"]/div""")
     NotFoundError()
