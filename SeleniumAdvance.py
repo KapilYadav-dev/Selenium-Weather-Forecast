@@ -41,8 +41,8 @@ city = input("Please correctly enter your city...")
 inputCity = driver.find_element_by_xpath("""//*[@id="search_str"]""")
 inputCity.send_keys(city)
 inputCity.submit()
-# Sleeping so that website can load..
-time.sleep(3)
+# Make webdriver to stop for 5 sec so that website can load..
+time.sleep(5)
 try:
     alert = driver.find_element_by_xpath("""//*[@id="forecast_list_ul"]/div""")
     NotFoundError()
@@ -69,6 +69,6 @@ except:
         print("Rain :" + rain)
     except:
         Error("Rain")
-ans = input("Do you want to build graph for temp....\n")
+ans = input("Do you want to build graph for temp, Type Yes or No....\n")
 if ans == "Yes" or ans == "yes" or ans == "YES" or ans == "y" or ans == "Y":
     BuildGraph()
